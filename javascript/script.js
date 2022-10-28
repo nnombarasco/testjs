@@ -1104,21 +1104,81 @@ var allPlaces = [
     }
   ]
 
-let contentCard = "";
-let searchField = document.querySelector("#searcher");
+let contentCard;
+let form_ = document.querySelector("#form_");
 let city_ = "";
 let guests_ ;
 let type_ = "";
 let checkin_;
 let checkout_;
 
+let validator = function (name, amount, kind){
+  if(name != "Destination" && amount != "Guests" && kind != "Accommodation"){
+    return true;
+  }else{
+    alert("something is wrong, please complete all the fields");
+    return false;
+  }
+}
 
-if(searchField){
-    searchField.addEventListener("click", ()=>{
+let showPlaces = function(indice){
+  let card = document.createElement("div");
+  card.setAttribute("class", "card");
+  let places = allPlaces[indice].places;
+  places.forEach(element => {
+    //console.log(element);
+    card.innerHTML += `
+        <h4>${element.name}</h4><p>Description: $${element.description}</p>
+        <p>Adress: ${element.address}</p>
+        `;
+        console.log(card);
+        console.log(`name: ${element.name}, description: ${element.description}`)
+  }
+    //contentCard.appendChild(card)
+  )
+}
+
+
+const info= function(){
+  
+  if(form_){
+      form_.addEventListener("submit", (e)=>{
+
         city_ = document.querySelector("#destination").value;
         guests_ = parseInt(document.querySelector("#guests").value);
-        type_ = document.querySelector("#type").value;
-        contentCard.innerHTML += `Ciudad: ${city_}, personas: ${guests_} tipo ${type_}`
-    })
-}
+        type_ = document.querySelector("#type").value
+
+        if(validator(city_, guests_, type_)){
+                    
+          switch(type_){
+            case 'Hotel':
+              showPlaces(0);
+              break;
+              case 'Motel':
+              showPlaces(1);
+              break;
+              case 'House':
+              showPlaces(2);
+              break;
+              case 'Hostel':
+              showPlaces(3);
+              break;
+              default:
+              console.log("Error");
+          }
+
+        };
+        console.log("Ciudad elegida: " + city_ + " para " + guests_ + " personas, alojadas en un " + type_);
+        
+        
+        
+        e.preventDefault();
+      })
+  }
+  
+};
+
+info();
+
+
 
