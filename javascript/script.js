@@ -1128,13 +1128,14 @@ let showPlaces = function(indice){
   places.forEach(element => {
     //console.log(element);
     card.innerHTML += `
-        <h4>${element.name}</h4><p>Description: $${element.description}</p>
+        <h4>${element.name}</h4><p>Description: ${element.description}</p>
         <p>Adress: ${element.address}</p>
         `;
-        console.log(card);
+        //console.log(card);
         console.log(`name: ${element.name}, description: ${element.description}`)
+        contentCard.appendChild(card)
   }
-    //contentCard.appendChild(card)
+    //
   )
 }
 
