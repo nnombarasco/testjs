@@ -1104,7 +1104,7 @@ var allPlaces = [
     }
   ]
 
-let contentCard;
+let contentCard = document.querySelector("#ContentCards");
 let form_ = document.querySelector("#form_");
 let city_ = "";
 let guests_ ;
@@ -1125,18 +1125,15 @@ let showPlaces = function(indice){
   let card = document.createElement("div");
   card.setAttribute("class", "card");
   let places = allPlaces[indice].places;
-  places.forEach(element => {
-    //console.log(element);
+  for (const iterator of places) {
     card.innerHTML += `
-        <h4>${element.name}</h4><p>Description: ${element.description}</p>
-        <p>Adress: ${element.address}</p>
+        <div><h4>${iterator.name}</h4><p>Description: ${iterator.description}</p>
+        <p>Adress: ${iterator.address}</p></div>
         `;
         //console.log(card);
-        console.log(`name: ${element.name}, description: ${element.description}`)
-        contentCard.appendChild(card)
   }
-    //
-  )
+  contentCard.appendChild(card)
+  console.log(card)
 }
 
 
