@@ -1122,18 +1122,18 @@ let validator = function (name, amount, kind){
 }
 
 let showPlaces = function(indice){
-  let card = document.createElement("div");
-  card.setAttribute("class", "card");
+  let cards = document.createElement("div");
+  cards.setAttribute("class", "cards");
   let places = allPlaces[indice].places;
   for (const iterator of places) {
-    card.innerHTML += `
-        <div><h4>${iterator.name}</h4><p>Description: ${iterator.description}</p>
+    cards.innerHTML += `
+        <div class="card"><h4>${iterator.name}</h4><p>Description: ${iterator.description}</p>
         <p>Adress: ${iterator.address}</p></div>
         `;
         //console.log(card);
   }
-  contentCard.appendChild(card)
-  console.log(card)
+  contentCard.appendChild(cards)
+  console.log(cards)
 }
 
 
