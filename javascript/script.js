@@ -1121,31 +1121,42 @@ let validator = function (name, amount, kind){
   }
 }
 
+
 let showPlaces = function(indice){
   let cards = document.createElement("div");
   cards.setAttribute("class", "cards");
+  contentCard.innerHTML += `<h1>Search Results</h1>`
   let places = allPlaces[indice].places;
   for (const iterator of places) {
     cards.innerHTML += `
-        <div class="card"><h4>${iterator.name}</h4><p>Description: ${iterator.description}</p>
-        <p>Adress: ${iterator.address}</p></div>
+        <div class="card"><h4>${iterator.name}</h4>
+        <p>Description: ${iterator.description}</p>
+        <p>Adress: ${iterator.address}</p>
+        <h4>Amenities</h4>
+        <p>${iterator.amenities}</p>
+        <button id="${iterator.id}">Book Now</button>
+        </div>
         `;
         //console.log(card);
   }
   contentCard.appendChild(cards)
-  console.log(cards)
 }
 
+let empty = function(){
+  let cards = document.querySelector(".cards");
+  if(cards != null){
+    contentCard.innerHTML = ``;
+  }
+}
 
 const info= function(){
   
   if(form_){
       form_.addEventListener("submit", (e)=>{
-
+        empty();
         city_ = document.querySelector("#destination").value;
         guests_ = parseInt(document.querySelector("#guests").value);
-        type_ = document.querySelector("#type").value
-
+        type_ = document.querySelector("#type").value;
         if(validator(city_, guests_, type_)){
                     
           switch(type_){
@@ -1166,10 +1177,6 @@ const info= function(){
           }
 
         };
-        console.log("Ciudad elegida: " + city_ + " para " + guests_ + " personas, alojadas en un " + type_);
-        
-        
-        
         e.preventDefault();
       })
   }
