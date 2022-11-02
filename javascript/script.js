@@ -1127,13 +1127,22 @@ let showPlaces = function(indice){
   cards.setAttribute("class", "cards");
   contentCard.innerHTML += `<h1>Search Results</h1>`
   let places = allPlaces[indice].places;
-  for (const iterator of places) {
+  let newPlaces = places.filter(city => city.location == city_);
+  for (const iterator of newPlaces) {
+
     cards.innerHTML += `
-        <div class="card"><h4>${iterator.name}</h4>
-        <p>Description: ${iterator.description}</p>
-        <p>Adress: ${iterator.address}</p>
+        <div class="card row">
+        <div class="col-sm-6">
+          <img src="../images/imgs/${iterator.photo}" alt="photo">
+        </div>
+        <div class="info_ col-sm-6">
+          <h4>${iterator.name}</h4>
+          <p>Description: ${iterator.description}</p>
+          <p>Adress: ${iterator.address}</p>
+        </div>
         <h4>Amenities</h4>
         <p>${iterator.amenities}</p>
+        <img class="stars" src="../images/imgs/${iterator.stars}" alt="stars">
         <button id="${iterator.id}">Book Now</button>
         </div>
         `;

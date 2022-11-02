@@ -56,4 +56,15 @@ body {
   text-align: justify;
 }
 
+.card img{
+  max-width: 70%;
+}
+
+.card.info_{
+  width: 50%;
+}
+
+.stars{
+  width: 20%;
+}
 /*# sourceMappingURL=style.css.map */
